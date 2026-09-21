@@ -75,8 +75,8 @@ struct GeneralSettingsPane: View {
 
     @ViewBuilder
     private var showIceIcon: some View {
-        Toggle("Show Ice icon", isOn: $settings.showIceIcon)
-            .annotation("Click to show hidden menu bar items. Right-click to access Ice's settings.")
+        Toggle("Show \(Constants.displayName) icon", isOn: $settings.showIceIcon)
+            .annotation("Click to show hidden menu bar items. Right-click to access \(Constants.displayName)'s settings.")
     }
 
     @ViewBuilder
@@ -200,7 +200,7 @@ struct GeneralSettingsPane: View {
             case .mousePointer:
                 Text("The Ice Bar is centered below the mouse pointer.")
             case .iceIcon:
-                Text("The Ice Bar is centered below the Ice icon.")
+                Text("The Ice Bar is centered below the \(Constants.displayName) icon.")
             }
         }
     }

@@ -85,7 +85,7 @@ struct AboutSettingsPane: View {
                 }
 
                 VStack(alignment: .leading) {
-                    Text("Ice")
+                    Text(Constants.displayName)
                         .font(.system(size: 80))
                         .foregroundStyle(.primary)
 
@@ -145,7 +145,7 @@ struct AboutSettingsPane: View {
     @ViewBuilder
     private func bottomBar(containerShape: some InsettableShape) -> some View {
         HStack {
-            Button("Quit Ice") {
+            Button("Quit \(Constants.displayName)") {
                 NSApp.terminate(nil)
             }
             Spacer()
