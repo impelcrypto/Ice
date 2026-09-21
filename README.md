@@ -1,7 +1,14 @@
 <div align="center">
-    <img src="Ice/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width=200 height=200>
-    <h1>Ice</h1>
+    <img src="Ice/Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width=200 height=200>
+    <h1>Frost</h1>
 </div>
+
+> [!IMPORTANT]
+> **Frost is a fork of [Ice](https://github.com/jordanbaird/Ice) that builds and runs on macOS 26 (Tahoe).**
+> Upstream Ice has not shipped a Tahoe-compatible release. This fork merges the author's unreleased `macos-26` branch,
+> applies community fix [#982](https://github.com/jordanbaird/Ice/pull/982) (ScreenCaptureKit fallback, XPC signing guard),
+> and replaces a dependency that no longer compiles on Xcode 27. Only the app name is changed; the bundle identifier stays `com.jordanbaird.Ice`.
+> Everything below is the original Ice README.
 
 Ice is a powerful menu bar management tool. While its primary function is hiding and showing menu bar items, it aims to cover a wide variety of additional features to make it one of the most versatile menu bar tools available.
 
