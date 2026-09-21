@@ -3,10 +3,9 @@
 //  Ice
 //
 
-import CompactSlider
 import SwiftUI
 
-struct IceSlider<Value: BinaryFloatingPoint, ValueLabel: View>: View {
+struct IceSlider<Value: BinaryFloatingPoint, ValueLabel: View>: View where Value.Stride: BinaryFloatingPoint {
     @Binding private var value: Value
 
     private let bounds: ClosedRange<Value>
@@ -49,24 +48,12 @@ struct IceSlider<Value: BinaryFloatingPoint, ValueLabel: View>: View {
         if #available(macOS 26.0, *) { 24 } else { 22 }
     }
 
+    // ponytail: native Slider replaces CompactSlider (1.x fails to compile on Xcode 27).
     var body: some View {
-        CompactSlider(
-            value: $value,
-            in: bounds,
-            step: step ?? 0,
-            handleVisibility: .hovering(width: 0),
-            minHeight: 0,
-            gestureOptions: .default.subtracting([.scrollWheel])
-        ) {
-            valueLabel
-                .frame(height: height)
+        if let step {
+            Slider(value: $value, in: bounds, step: Value.Stride(step)) { valueLabel.frame(height: height) }
+        } else {
+            Slider(value: $value, in: bounds) { valueLabel.frame(height: height) }
         }
-        .compactSliderDisabledHapticFeedback(true)
-        .compactSliderSecondaryColor(
-            progressColor: .accentColor.opacity(0.5),
-            focusedProgressColor: .accentColor.opacity(0.75)
-        )
-        .clipShape(borderShape)
-        .contentShape([.interaction, .focusEffect], borderShape)
     }
 }
